@@ -1,0 +1,113 @@
+%  Sascha A. Stoeter <stoeter@iris.ethz.ch>, www.stoeter.com
+%  modified Marc Vinzens <vinzenma@student.ethz.ch>
+%  modified by Beat Eberle <eberleb@student.ethz.ch>
+
+\def\packagename{ivpthesis_1}
+\def\packagemessage{Vorlage vom Institut für Virtuelle Produktion, ETH Zürich.}
+\def\fileversion{0.2}
+\def\filedate{2007/04/26}
+\def\docdate{2006/04/26}
+
+
+% ---- identification ---------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ivpthesis_1}[\filedate\space v\fileversion\space \packagename]
+\typeout{Package: `\packagename' v\fileversion\space <\filedate>}
+\typeout{\packagemessage}
+
+
+% ---- package loading --------------------------------------------------------
+
+\RequirePackage{amsmath}
+\RequirePackage{fancyhdr}
+\RequirePackage{graphicx}
+\RequirePackage{setspace}
+\RequirePackage[absolute]{textpos}
+\RequirePackage{calc}
+
+
+% ---- main code --------------------------------------------------------------
+
+\DeclareGraphicsExtensions{.png,.PNG,.pdf,.PDF,.jpg,.JPG}
+
+\onehalfspacing
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{2}
+
+\numberwithin{equation}{section}
+
+\bibliographystyle{abbrv}
+
+
+\newcommand{\ivpthesistype}{}
+\newcommand{\ivpauthor}{}
+\newcommand{\ivpadviser}{}
+\newcommand{\ivpthesisnumber}{}
+\newcommand{\frontpicture}{}
+
+
+\newcommand{\ivptitlepage}[2]{
+\newpage
+\thispagestyle{empty}
+\textblockorigin{0cm}{0cm}
+\begin{textblock*}{12mm}(27mm,12mm)
+  \includegraphics[height=12mm]{ETH_original.pdf}
+\end{textblock*}
+\begin{textblock*}{12mm}(89mm,12mm)
+  \includegraphics[height=12mm,width=102mm]{IVP_original.png}
+\end{textblock*}
+\begin{flushleft}
+		\vspace*{11mm}
+		\large \ivpthesistype{}arbeit Nr. \ivpthesisnumber \\
+		\vspace*{11mm}
+		\huge  \textbf{#1} \\
+		\vspace*{8mm}
+		\Large \textbf{\ivpauthor{}}  \\
+\end{flushleft}
+\vspace{10mm}
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=\textwidth]{frontpicture.pdf}
+\end{figure}
+\begin{table}[!b]
+\begin{flushright}
+		\large Supervisor: \ivpadviser{}\\
+		\vspace*{14mm}
+		{
+		\renewcommand{\baselinestretch}{1}
+		\large Institute of Virtual Manufacturing\\
+		\large Prof.\ Dr.\ Pavel\ Hora\\
+		\large ETH Zurich\\
+		}
+		\vspace*{18mm}
+		%\large\digitsdate\today\\
+		\large #2
+\end{flushright}
+\end{table}
+\newpage
+\thispagestyle{empty}
+\setlength{\@fpbot}{0pt}
+\begin{table}[!b]
+\begin{flushleft}
+		{
+		\renewcommand{\baselinestretch}{1}
+		\small ETH Zurich\\
+		\small Institute of Virtual Manufacturing\\
+		\small CLA F 07.0\\
+		\small Tannenstrasse 3\\
+		\small 8092 Zurich\\
+		\begin{tabbing}
+		Links \= Mitte \= Rechts \kill
+		\small Telefon: \> \> +41 (0)44 632 26 10\\
+		\small Fax: \> \> +41 (0)44 632 11 65
+		\end{tabbing}
+		\small sek@ivp.mavt.ethz.ch\\
+		\small www.ivp.ethz.ch\\
+		}
+\end{flushleft}
+\end{table}
+\clearpage
+}
+

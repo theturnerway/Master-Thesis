@@ -1,0 +1,223 @@
+% -----------------------------------------------------------------------------------------------------------------------------------------
+%
+%  Geruest für Arbeiten am Institut für Virtuelle Produktion, ETH Zürich
+% -----------------------------------------------------------------------------------------------------------------------------------------
+%
+% DATEINAME:   arbeit.tex
+%
+% INHALT:      Hauptdatei fuer Arbeiten
+%
+% ANWENDUNG:   Mit pdfLaTeX kompilieren
+% -----------------------------------------------------------------------------------------------------------------------------------------
+
+\documentclass[11pt,twoside,a4paper,DIV11,numbers=noendperiod]{scrartcl} % Definition des Dokumentenlayouts, Verwendung der KOMA-Klasse scrartcl (aequivalent zum Standardscript article, fuer weitere Informationen siehe: http://www.komascript.de/
+\usepackage{ivpthesis_1}                        % Einbinden des IVP-Pakets
+\usepackage[english]{babel}                     % Verwendung des deutschen Sprachpakets
+\usepackage[left=2.5 cm,right=2.5 cm,top=2.5 cm,bottom=1.7cm,bindingoffset=0.4cm]{geometry} % Angepasste Seitenraender + Offset fuer Bindung
+\usepackage[ngerman]{datetime}                  % Datum deutsch
+\addtokomafont{caption}{\small}                 % Kleinere Unterschriften
+\newdateformat{digitsdate}{\twodigit{\THEDAY}.\twodigit{\THEMONTH}.\THEYEAR} % Datumsformat fuer Titelblatt
+\pagestyle{fancy}                               % Definition der Kopfzeile
+\setlength{\headwidth}{\textwidth}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancyhead{}
+\rhead[\nouppercase{\rightmark}]{\thepage}
+\lhead[\thepage]{\nouppercase{\rightmark}}
+\fancyfoot{}                                   % Definition der Fusszeile
+% -----------------------------------------------------------------------------------------------------------------------------------------
+% Hier koennen weitere, evtl. benoetigte Pakete hinzugefuegt werden
+% -----------------------------------------------------------------------------------------------------------------------------------------
+\usepackage{subfigure}                          % Fuer den Gebrauch von subfigures
+\usepackage{siunitx}  							% SI-Einheiten
+\usepackage[T1]{fontenc}						% Silbentrennung
+\usepackage[utf8]{inputenc} 					% Fuer deutsche Umlaute
+\usepackage{helvet}                             % Schrift
+\renewcommand{\familydefault}{\sfdefault}       % Schrift
+\usepackage{booktabs,array}						% for tables
+\usepackage{multirow}							% for tables
+\usepackage{mathrsfs}
+\usepackage[makeroom]{cancel}
+\usepackage[colorlinks=false, pdfborder={0 0 0}, bookmarksopenlevel=3,pdfpagelabels=true]{hyperref}% Hyperlinks in PDFs
+% -----------------------------------------------------------------------------------------------------------------------------------------
+% Nuetzliche Definitionen, koennen nach Belieben erweitert werden
+% -----------------------------------------------------------------------------------------------------------------------------------------
+\providecommand{\zb}{z.B.}
+\providecommand{\ua}{\textit{u.a.}}
+\providecommand{\dh}{d.h.}
+% -----------------------------------------------------------------------------------------------------------------------------------------
+% Typ der Arbeit waehlen
+% -----------------------------------------------------------------------------------------------------------------------------------------
+%\renewcommand{\ivpthesistype}{Bachelor}
+%\renewcommand{\ivpthesistype}{Semester}
+\renewcommand{\ivpthesistype}{Master}
+% -----------------------------------------------------------------------------------------------------------------------------------------
+% Nummer der Arbeit angeben (fuer weitere Information bitte Betreuer oder Frau Haerry (haerry@ivp.mavt.ethz.ch) fragen)
+% -----------------------------------------------------------------------------------------------------------------------------------------
+\renewcommand{\ivpthesisnumber}{07-001}
+% -----------------------------------------------------------------------------------------------------------------------------------------
+% Namen von Autoren und Betreuern angeben
+% -----------------------------------------------------------------------------------------------------------------------------------------
+\renewcommand{\ivpauthor}{Erik Turner}
+\renewcommand{\ivpadviser}{Dr. Niko Manopulo\\Dr. Bekim Berisha}
+% -----------------------------------------------------------------------------------------------------------------------------------------
+% Titelbild
+% -----------------------------------------------------------------------------------------------------------------------------------------
+% 
+% UNBEDINGT LESEN:
+% Bild auf der Vorderseite muss ZWINGEND als frontpicture.pdf gespeichert werden! Die Dimension sollte Laenge zu Breite 5:3 betragen.
+%
+%
+% -----------------------------------------------------------------------------------------------------------------------------------------
+% Ab hier beginnt das Geruest fuer den Hauptteil der Arbeit
+% -----------------------------------------------------------------------------------------------------------------------------------------
+\begin{document}
+% Alle bib-items werden einbezogen, ohne dass im Text hierauf Bezug genommen wird
+%\nocite{*}
+
+% Erster Teil des Vorspanns: Titelseiten, werden nicht nummeriert und auch nicht gezaehlt. Bild wird nicht ins Bilderverzeichnis miteinbezogen.
+% Titelseite, Titel der Arbeit eingeben. Falls das Datum (welches mit dieser Einstellung immer das Kompilierdatum ist) geaendert werden muss, soll '\digitsdate\today' durch das entsprechende Datum vom Format DD.MM.JJJJ
+\ivptitlepage{Computational material and contact modelling of the interaction between plunger rod and rubber stopper during the assembly of medical syringes}{\digitsdate\today}
+\makeatletter
+\setlength\@fpbot{0\p@ \@plus 1fil}
+\makeatother
+
+% Zweiter Teil des Vorspanns: Seiten werden mit kleinen roemischen Nummern nummeriert. Begonnen wird mit 'i'.
+\pagenumbering{roman}
+
+% Erklaerung der Eigenstaendigkeit
+\newpage
+\addcontentsline{toc}{section}{\protect\numberline{}{Declaration of originality}}
+\markright{Eigenständigkeit}
+\include{suppl/Eigenstaendigkeit}
+
+% Vorwort (optional)
+%\newpage
+%\addcontentsline{toc}{section}{\protect\numberline{}{Vorwort}}
+%\markright{Vorwort}
+%\include{suppl/Vorwort}
+
+% English and Zusammenfassungen sollen nicht laenger als eine Seite pro Sprache sein.
+\newpage
+\addcontentsline{toc}{section}{\protect\numberline{}{Zusammenfassung}}
+\markright{Zusammenfassung}
+\include{suppl/Zusammenfassung}
+
+\newpage
+\addcontentsline{toc}{section}{\protect\numberline{}{Abstract}}
+\markright{Abstract}
+\include{suppl/Abstract}
+
+% Verzeichnisse
+% Inhaltsverzeichnis
+\newpage
+\tableofcontents
+\addtocontents{toc}{\vspace{.5\baselineskip}}
+
+% Tabellenverzeichnis
+\newpage
+\addcontentsline{toc}{section}{\protect\numberline{}{List of tables}}
+\listoftables
+
+% Abbildungsverzeichnis
+\newpage
+\addcontentsline{toc}{section}{\protect\numberline{}{List of figures}}
+\listoffigures
+
+% Bezeichnungen
+\newpage
+\addcontentsline{toc}{section}{\protect\numberline{}{Nomenclature}}
+\addtocontents{toc}{\vspace{.5\baselineskip}}
+\markright{Nomenclature}
+\include{suppl/Bezeichnungen}
+
+
+% Ab hier beginnt die eigentliche Arbeit. Seiten werden arabisch nummeriert, beginnend mit '1'.
+
+\clearpage
+\pagenumbering{arabic}
+
+% Introduction
+\newpage
+%\addcontentsline{toc}{section}{\protect\numberline{}{Introduction}}
+%\addtocontents{toc}{\vspace{.5\baselineskip}}
+\markright{Introduction}
+\include{chapters/introduction}
+
+% Literature
+\newpage
+%\addcontentsline{toc}{section}{\protect\numberline{}{Introduction}}
+%\addtocontents{toc}{\vspace{.5\baselineskip}}
+\markright{literature analysis}
+\include{chapters/literature}
+
+% Process modelling
+\newpage
+%\addcontentsline{toc}{section}{\protect\numberline{}{Design, Optimization and Robustness Analysis}}
+%\addtocontents{toc}{\vspace{.5\baselineskip}}
+\markright{Design, Optimization and Robustness Analysis}
+\include{chapters/proc_mod}
+
+% Finite Elements Model
+\newpage
+%\addcontentsline{toc}{section}{\protect\numberline{}{Finite Element Modeling}}
+%\addtocontents{toc}{\vspace{.5\baselineskip}}
+\markright{Non-linear Finite Element Modeling}
+\include{chapters/fem}
+
+% Hyperelastic Model
+\newpage
+%\addcontentsline{toc}{section}{\protect\numberline{}{Hyperelastic Materials Modeling}}
+%\addtocontents{toc}{\vspace{.5\baselineskip}}
+\markright{Hyperelastic Matieral Models}
+\include{chapters/hyperelastic}
+
+% Contact Model
+\newpage
+%\addcontentsline{toc}{section}{\protect\numberline{}{Contact Modeling}}
+%\addtocontents{toc}{\vspace{.5\baselineskip}}
+\markright{Contact Modeling}
+\include{chapters/contact}
+
+
+
+% Results
+\newpage
+%\addcontentsline{toc}{section}{\protect\numberline{}{Results}}
+%\addtocontents{toc}{\vspace{.5\baselineskip}}
+%\markright{Results}
+\include{chapters/preliminary}
+
+
+
+\include{chapters/fea}
+\include{chapters/exp}
+\include{chapters/discussion}
+% Conclusion
+\newpage
+%\addcontentsline{toc}{section}{\protect\numberline{}{Conclusion}}
+%\addtocontents{toc}{\vspace{.5\baselineskip}}
+%\markright{Conclusion and Outlook}
+\include{chapters/conclusion }
+
+% Bibliografie
+\newpage
+\addtocontents{toc}{\vspace{.5\baselineskip}}
+\addcontentsline{toc}{section}{\protect\numberline{}{References}}
+\markright{Conclusion and Outlook}
+\bibliography{arbeit}
+
+% Nachwort (nicht zwingend)
+\newpage
+\addtocontents{toc}{\vspace{.5\baselineskip}}
+\addcontentsline{toc}{section}{\protect\numberline{}{Afterword}}
+\markright{Afterword}
+\include{suppl/Nachwort}
+
+% Anhang, falls benoetigt
+\newpage
+%\addtocontents{toc}{\vspace{.5\baselineskip}}
+\include{suppl/Anhang}
+
+
+\end{document}
+

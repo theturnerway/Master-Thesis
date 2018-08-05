@@ -1,0 +1,72 @@
+\section{Contact modeling}
+The objective of contact analysis is to answer the following questions:
+(a) whether two or more bodies are in contact, (b) if they are, where the location
+or region of contact is, (c) how much contact force or pressure occurs in the contact
+interface, and (d) if there is a relative motion after contact in the interface.
+
+Contact is categorized as boundary nonlinearity, in contrast to both geometric
+nonlinearity, which emerges from finite deformation problems, and material
+nonlinearity, which is a product of nonlinear constitutive relations. The nonlinearity
+of contact can be explained in two aspects. Firstly, if two separate bodies come into
+contact, the graph of the contact force vs. displacement looks like a cliff because the
+contact force stays at zero when two bodies are separate and increases vertically
+after the bodies come into contact. In such a case, a functional relationship is not
+available because there is no one-to-one relationship between contact force and
+displacement. A similar phenomenon happens in the tangential direction under
+friction where two bodies are stuck together until the tangential force reaches a
+threshold, after which continuous sliding occurs without further increasing the
+tangential force. Such an abrupt change in contact force and slip makes the problem
+highly nonlinear. Secondly, in order to be a well-posed problem in mechanics,
+either displacement (kinematics) or force (kinetics), but not both, must be given for
+every material point. Then, the finite element equation solves for unknown information
+with given information. On the displacement boundary, for example, if
+displacement is given, reaction force should be calculated. On the other hand, on
+the traction boundary, if the applied force is given, the corresponding displacement
+is to be calculated. Note that these two boundaries are clearly identified in the
+problem definition stage. In the case of contact, however, both displacement and
+contact force are unknown, except for very limited cases; that is, the contact
+boundary is a part of the solution. The user can only identify a candidate of contact
+boundary before solving the problem. Therefore, the finite element analysis procedure
+must find (a) whether a material point in the boundary of a body is in contact
+with the other body, and if it is in contact, (b) the corresponding contact force must
+be calculated. Since the contact force at a material point can affect the deformation
+of neighboring points, this process needs to be repeated until finding right states for
+all points that are possible in contact. Because of this procedural nature, contact
+nonlinearity is often addressed algorithmically (Fig. 5.1).
+Frictional, frictionless 
+\subsection{Contact Formulations}
+Surface description, tolerances, separation, adaptive meshing
+\paragraph{Surface description}
+\paragraph{Tolerances}
+\paragraph{Separation}
+\paragraph{Adaptive meshing}
+\subsection{Governing equations}
+
+
+\subsection{Discretization}
+Discretization of the contact area into elementary units responsible
+for the contact stress transmission from one contacting surface to
+another.
+Node-to-node discretization
+Node-to-segment discretization
+Segment-to-segment discretization
+Mortar and Nitsche discretizations
+Contact domain method for discretization
+
+
+\subsubsection{Smoothing}
+Scheme of two non-matching meshes
+Smoothing of the master surface
+Contact detection
+Contact element construction (edge contact element)
+Constructed smoothed contact elements
+
+\subsubsection{Solution}
+Boundary value problem with constraints
+
+\subsection{Optimization methods}
+Smoothing algorithm 
+\subsubsection{Penalty}
+\subsubsection{Lagrange multipliers}
+\subsubsection{Augmented Lagrangian}
+
